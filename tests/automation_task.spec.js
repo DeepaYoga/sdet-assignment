@@ -14,12 +14,15 @@ test('UI Automation Task for Playwright.dev', async ({ page }) => {
   await expect(searchResults.first()).toBeVisible();
   await page.click('a[href="/docs/api-testing"]');
 
-// step 3: verify the docs is active and it is visible
+  //step 3: Verify Page title
+  await expect(page).toHaveTitle('API testing | Playwright');
+
+  // step 4: verify the docs is active and it is visible
    await page.getByRole('link', { name: 'Docs' }).hover();
-   //step4: Go to Annotations and click on it
+   //step 5: Go to Annotations and click on it
   await page.getByRole('link', { name: 'Annotations' }).click();
 
-  // // Step 5: Find “Skip a test” section, get href and print to console
+  // Step 6: Find “Skip a test” section, get href and print to console
   const skipLink = page.locator("//a[normalize-space(text())='Skip a test']")
   const href = await skipLink.getAttribute('href');
   console.log('Href for "Skip a test":', href);
